@@ -1,23 +1,33 @@
-# Compiled class file
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+.gradle/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+#Class Files #
 *.class
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+#Integration Test
+src/test/resources/integration-test/
 
 # Package Files #
 *.jar
 *.war
-*.nar
 *.ear
+*.tar
 *.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+*.rpm
+outputs/rpm/*
+pom.xml.versionsBackup
