@@ -45,8 +45,8 @@
 						<developmentBranch>main</developmentBranch>
 					</gitFlowConfig>
 					<commitMessages>
-						<releaseStartMessage>Update versions for release [ci skip]</releaseStartMessage>
-						<releaseFinishMessage>Update for next development version [ci skip]</releaseFinishMessage>
+						<releaseStartMessage>[ci skip] Update versions for release</releaseStartMessage>
+						<releaseFinishMessage>[ci skip] Update for next development version</releaseFinishMessage>
 					</commitMessages>
 				</configuration>
 			</plugin>
