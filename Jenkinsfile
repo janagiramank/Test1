@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh "git log -1"
                 scmSkip(deleteBuild: true, skipPattern:'\\[ci skip\\].*')
+                echo 'checkout completed'
             }
         }
         stage('Build') {
@@ -26,6 +27,7 @@ pipeline {
                         sh "mvn -B gitflow:release -Drevision=${pom.version.replaceAll("-SNAPSHOT","")}"
                     }
                 }
+                echo 'build completed'
             }
         }
 
@@ -37,8 +39,4 @@ pipeline {
             slackSend channel: 'general' , message: 'please check the pipeline status'
         }
     }
-}
-def getArtefactVersionFromLastCommitTag() {
-    version = sh script: "git describe --abbrev=0 | sed -E 's/^v(.*)/\\1/g' | tr -d '\\n'", returnStdout: true
-    return version
 }
