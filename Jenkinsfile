@@ -8,22 +8,30 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                scmSkip(deleteBuild: false, skipPattern:'.*\\[ci skip\\].*')
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
                 sh 'mvn --version'
                 script {
-                    def pom = readMavenPom file: 'pom.xml'
-                    sh "mvn -B gitflow:release -Drevision=${pom.version.replaceAll("-SNAPSHOT","")}"
-                    GIT_TAG = getArtefactVersionFromLastCommitTag()
+                    withCredentials([gitUsernamePassword(credentialsId: 'git-up', gitToolName: 'git-tool')]) {
+                        sh "git config --global --add user.name janagiramank"
+                        sh "git config --global --add user.email k.janagiraman@elsevier.com"
+                        def pom = readMavenPom file: 'pom.xml'
+                        sh "mvn -B gitflow:release -Drevision=${pom.version.replaceAll("-SNAPSHOT","")}"
+                    }
                 }
-                echo("GIT_TAG_SELECTOR=${GIT_TAG}")
             }
         }
     }
 
     post{
         always{
+            deleteDir()
             slackSend channel: 'general' , message: 'please check the pipeline status'
         }
     }
