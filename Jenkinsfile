@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 sh "git log -1"
-                scmSkip(deleteBuild: false, skipPattern:'\\[ci skip\\].*')
+                scmSkip(deleteBuild: true, skipPattern:'\\[ci skip\\].*')
             }
         }
         stage('Build') {
