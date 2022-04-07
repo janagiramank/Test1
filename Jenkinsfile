@@ -11,6 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 scmSkip(deleteBuild: false, skipPattern:'\\[ci skip\\].*')
+
             }
         }
         stage('Build') {
@@ -27,6 +28,7 @@ pipeline {
                 }
             }
         }
+
     }
 
     post{
