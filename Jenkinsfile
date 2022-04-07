@@ -10,7 +10,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                sh "git checkout main"
+                sh "git reset --hard origin/main"
+                sh "git branch --set-upstream-to=origin/main main"
                 scmSkip(deleteBuild: false, skipPattern:'\\[ci skip\\].*')
 
             }
