@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                sh 'sleep 3'
                 sh "git log -1"
                 scmSkip(deleteBuild: true, skipPattern:'\\[ci skip\\].*')
                 sh 'sleep 5'
