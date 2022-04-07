@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh "git log -1"
                 scmSkip(deleteBuild: true, skipPattern:'\\[ci skip\\].*')
+                sh 'sleep 2000'
                 echo 'checkout completed'
             }
         }
