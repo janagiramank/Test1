@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sh "git pull origin main"
+                sh "git log -1"
                 scmSkip(deleteBuild: false, skipPattern:'\\[ci skip\\].*')
             }
         }
